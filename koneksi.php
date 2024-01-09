@@ -3,7 +3,7 @@ session_start();
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "belajarphp";
+$dbname = "db_belajar";
 
 $db = mysqli_connect($host, $username, $password, $dbname);
 
