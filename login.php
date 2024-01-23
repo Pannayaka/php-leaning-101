@@ -74,7 +74,9 @@ if (isset($_POST['email']) || isset($_POST['password'])) {
 				</form>
 	  		</div>
 	  		<div class="card-footer">
+	  			<a href="register.php">
 			   Register
+				</a>
 			</div>
 		</div>
 	</div>

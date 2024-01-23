@@ -10,7 +10,7 @@ if(isset($_SESSION['login'])){
 if (isset($_POST['email']) || isset($_POST['password'])) {
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	$repeatpassword = $_POST['password2'];
+	$repeatpassword = $_POST['passwordrepeat'];
 	if ($repeatpassword != $password){
 		echo "Password tidak sama";
 		exit();
@@ -19,36 +19,79 @@ if (isset($_POST['email']) || isset($_POST['password'])) {
 		echo "Password Harus 8 Karakter atau Lebih";
 		exit();
 	}
+	$selectUser = mysqli_query($db, "SELECT count(*) AS 'jumlah' FROM users WHERE email='$email'");
+	$getUser = mysqli_fetch_array($selectUser);
+	if ($getUser['jumlah'] > 0) {
+		$_SESSION['verif'] = "Email Sudah Terdaftar";
+		header('Location:register.php');
+		exit();
+	}
 
 	$password = password_hash($password, PASSWORD_DEFAULT);
 
 	$inputUser = mysqli_query($db, "INSERT INTO users (email, password, input_date) VALUES ('$email','$password', NOW())");
-	exit();
+	if ($inputUser == true) {
+		header('Location:register.php');
+		exit();
+	}
 
 }
  ?>
 
- <!DOCTYPE html>
- <html>
- <head>
- 	<meta charset="utf-8">
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<title> Register</title>
- </head>
- <body>
+ <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="row justify-content-center mt-5">
+    	<div class="col-md-3 mt-5">
+    		<div class="card">
+	  		<div class="card-body">
+	    		<h5 class="card-title">Register Account</h5>
+	    		<?php if (@$_SESSION['verif']): ?>
+	    			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  						<?php echo $_SESSION['verif'] ?>
+  						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+	    		<?php endif ?>
+		    		<form action="" method="POST">
+					<div class="mb-3">
+		  				<label for="formGroupExampleInput" class="form-label">Email</label>
+		  				<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Email" name="email">
+					</div>
+					<div class="mb-3">
+		  				<label for="formGroupExampleInput2" class="form-label">Password</label>
+		  				<input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password"name="password">
+					</div>
+					<div class="mb-3">
+		  				<label for="formGroupExampleInput2" class="form-label">Repeat Password</label>
+		  				<input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password"name="passwordrepeat">
+					</div>
+					<button type="submit" class="btn btn-outline-primary">Register</button>
+				</form>
+	  		</div>
+	  		<div class="card-footer">
+	  			<h7>
+	  				Already Have An Account?
+	  			</h4>
+	  			<a href="login.php">
+			   Login Here.
+				</a>
+			</div>
+		</div>
+	</div>
+    	</div>
 
- 	<form action="" method="POST">
-	
-	 	<label>email</label> <br>
-	 	<input type="email" name="email"> <br>
-	 	<label>password</label> <br>
-	 	<input type="password" name="password"> <br>
-	 	<label>repeat password</label> <br>
-	 	<input type="password" name="password2"> <br>
+    	<?php  
 
-	 	<button type="submit">REGISTER</button>
- 		
- 	</form>
+    	unset($_SESSION['verif']);
 
- </body>
- </html>
+    	?>
+    	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>
