@@ -101,6 +101,7 @@ $selectUser = mysqli_query($db, "SELECT * FROM users");
                 <th>Email</th>
                 <th>Input At</th>
                 <th>Actions</th>
+                <th>Edits</th>
             </tr>
         </thead>
         <tbody>
@@ -110,6 +111,7 @@ $selectUser = mysqli_query($db, "SELECT * FROM users");
                 <td><?php echo $value["email"] ?></td>
                 <td><?php echo $value["input_date"] ?></td>
                 <td>-</td>
+                <td> <a href="edituser.php?id=<?php echo $value["email"] ?>">Edit</a>, <a href="...">Delete</a></td>
                 </tr>
             <?php } ?>
         </tbody>
