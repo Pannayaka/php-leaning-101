@@ -5,9 +5,14 @@ if (!$_SESSION['login']){
 }
 // var_dump($_SESSION['login']);
 
-var_dump($_GET['id']);
+$id = $_GET['id'];
 
-$selectUser = mysqli_query($db, "SELECT * FROM users");
+
+$selectUser = mysqli_query($db, "SELECT * FROM users WHERE email='".$id."'");
+
+$data = mysqli_fetch_array($selectUser);
+
+var_dump($data)
 
 
 
