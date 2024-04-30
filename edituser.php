@@ -32,18 +32,17 @@ $data = mysqli_fetch_array($selectUser);
     		<div class="card">
 	  		<div class="card-body">
 	    		<h5 class="card-title">Edit User Data</h5>
-	    		<?php if (@$_SESSION['verif']): ?>
+	    		<?php if (@$_SESSION['failed']): ?>
 	    			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  						<?php echo $_SESSION['verif'] ?>
+  						<?php echo $_SESSION['failed'] ?>
   						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
 	    		<?php endif ?>
-		    		<form action="" method="POST">
+		    		<form action="updateuser.php" method="POST">
 					<div class="mb-3">
 		  				<label for="formGroupExampleInput" class="form-label">Email</label>
 		  				<input type="text" class="form-control" id="formGroupExampleInput" placeholder="Email" value="<?=$data['email'] ?>" name="email">
 					</div>
-					<form action="" method="POST">
 					<div class="mb-3">
 		  				<label for="formGroupExampleInput" class="form-label">Name</label>
 		  				<input type="text" class="form-control" id="formGroupExampleInput" placeholder="name" value="<?=$data['name'] ?>" name="name">
@@ -57,7 +56,7 @@ $data = mysqli_fetch_array($selectUser);
 
     	<?php  
 
-    	unset($_SESSION['verif']);
+    	unset($_SESSION['failed']);
 
     	?>
     	

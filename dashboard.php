@@ -93,11 +93,17 @@ $selectUser = mysqli_query($db, "SELECT * FROM users");
     </div>
     <div class="container">
     <a href="logut.php">LOGOUT</a>
-
+          <?php if (@$_SESSION['sukses']): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <?php echo $_SESSION['sukses'] ?>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <?php endif ?>
     <table class="zui-table">
         <thead>
             <tr>
                 <th>Number</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Input At</th>
                 <th>Actions</th>
@@ -107,16 +113,33 @@ $selectUser = mysqli_query($db, "SELECT * FROM users");
             <?php foreach ($selectUser as $key => $value){ ?>
                 <tr>
                 <td><?php echo $key + 1; ?></td>
+                <td><?php echo $value["name"] ?></td>
                 <td><?php echo $value["email"] ?></td>
                 <td><?php echo $value["input_date"] ?></td>
-                <td> <a href="edituser.php?id=<?php echo $value["email"] ?>">Edit</a>, <a href="...">Delete</a></td>
+                <td> 
+                  <a href="edituser.php?id=<?php echo $value["email"] ?>">Edit</a>,
+                  <form action="deleteuser.php" method="POST" onsubmit="return confirm('Are You Sure?')">
+                    <input type="hidden" name="id" value="<?php echo $value["id_user"];  ?>">
+                    <button type="submit">Delete</button>
+
+                  </form>
+                  
+
+                </td>
                 </tr>
             <?php } ?>
         </tbody>
     </table>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <?php  
+
+    unset($_SESSION['failed']);
+    unset($_SESSION['sukses']);
+    ?>
 
   </body>
 </html>
 
-    
+ 
