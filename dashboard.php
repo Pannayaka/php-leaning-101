@@ -39,6 +39,7 @@ $selectUser = mysqli_query($db, "SELECT * FROM users");
     padding: 10px;
     text-shadow: 1px 1px 1px #fff;
 }
+
 	</style>
 </head>
 <body>
@@ -66,7 +67,7 @@ $selectUser = mysqli_query($db, "SELECT * FROM users");
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
+              <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
@@ -141,5 +142,7 @@ $selectUser = mysqli_query($db, "SELECT * FROM users");
 
   </body>
 </html>
+
+
 
  
