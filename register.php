@@ -38,15 +38,7 @@ if (isset($_POST['email']) || isset($_POST['password'])) {
 }
  ?>
 
- <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register Page</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
+<?php include 'template/head.php'; ?>
     <div class="row justify-content-center mt-5">
     	<div class="col-md-3 mt-5">
     		<div class="card">
@@ -92,6 +84,4 @@ if (isset($_POST['email']) || isset($_POST['password'])) {
 
     	?>
     	
-    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+<?php include 'template/foot.php'; ?>
