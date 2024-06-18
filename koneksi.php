@@ -13,6 +13,9 @@ if (mysqli_connect_errno()){
 }
 
 
+$URL = 'http://localhost/php-leaning-101/';
+
+
 // $seclectuser = mysqli_query($db, "SELECT * FROM users");
 // $getuser = mysqli_fetch_array($seclectuser);
 //var_dump($getuser);

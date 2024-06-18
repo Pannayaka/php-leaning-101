@@ -1,19 +1,19 @@
 <?php 
-include("koneksi.php");
+include("../koneksi.php");
 if (!$_SESSION['login']){
-	header('Location:login.php');
+	header('Location:../login.php');
 }
 // var_dump($_SESSION['login']);
 
-$selectUser = mysqli_query($db, "SELECT * FROM users");
+$selectUser = mysqli_query($db, "SELECT * FROM items");
 $title = "dashbaord";
 
 ?>
 
 
 
-<?php include 'template/head.php'; ?>
-<?php include 'template/menu.php'; ?>
+<?php include '../template/head.php'; ?>
+<?php include '../template/menu.php'; ?>
     
     <div class="container">
 
@@ -28,22 +28,27 @@ $title = "dashbaord";
             <tr>
                 <th>Number</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Input At</th>
-                <th>Actions</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Date & Time</th>
+                <th>Edit</th>
+
             </tr>
         </thead>
         <tbody>
             <?php foreach ($selectUser as $key => $value){ ?>
                 <tr>
                 <td><?php echo $key + 1; ?></td>
-                <td><?php echo $value["name"] ?></td>
-                <td><?php echo $value["email"] ?></td>
-                <td><?php echo $value["input_date"] ?></td>
+                <td><?php echo $value["item_name"] ?></td>
+                <td><?php echo $value["item_stock"] ?></td>
+                <td><?php echo $value["item_price"] ?></td>
+                <td><?php echo $value["item_category"] ?></td>
+                <td><?php echo $value["item_insert_at"] ?></td>
                 <td> 
-                  <a href="edituser.php?id=<?php echo $value["email"] ?>">Edit</a>,
-                  <form action="deleteuser.php" method="POST" onsubmit="return confirm('Are You Sure?')">
-                    <input type="hidden" name="id" value="<?php echo $value["id_user"];  ?>">
+                  <a href="edit.php?id=<?php echo $value["item_id"] ?>">Edit</a>,
+                  <form action="delete.php" method="POST" onsubmit="return confirm('Are You Sure?')">
+                    <input type="hidden" name="item_id" value="<?php echo $value["item_id"];  ?>">
                     <button type="submit">Delete</button>
 
                   </form>
@@ -56,7 +61,7 @@ $title = "dashbaord";
     </table>
     </div>
 
-<?php include 'template/foot.php'; ?>
+<?php include '../template/foot.php'; ?>
    
 
  

@@ -66,9 +66,7 @@ $title = "login";
 				</form>
 	  		</div>
 	  		<div class="card-footer">
-	  			<a href="register.php">
-			   Register
-				</a>
+	  			<button type="submit" class="btn btn-outline-success">Register</button>
 			</div>
 		</div>
 	</div>
