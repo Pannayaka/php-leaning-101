@@ -23,6 +23,7 @@ $title = "dashbaord";
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           <?php endif ?>
+          <a href=" <?php echo $URL ?>/items/add.php" class="btn btn-outline-success"> ADD ITEMS </a>
     <table class="zui-table mt-5">
         <thead>
             <tr>

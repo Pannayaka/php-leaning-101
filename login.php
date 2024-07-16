@@ -60,13 +60,13 @@ $title = "login";
 					</div>
 					<div class="mb-3">
 		  				<label for="formGroupExampleInput2" class="form-label">Password</label>
-		  				<input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Password"name="password">
+		  				<input type="password" class="form-control" id="formGroupExampleInput2" placeholder="Password"name="password">
 					</div>
 					<button type="submit" class="btn btn-outline-primary">Login</button>
 				</form>
 	  		</div>
 	  		<div class="card-footer">
-	  			<button type="submit" class="btn btn-outline-success">Register</button>
+	  			<a href="register.php" class="btn btn-outline-success">Register</a>
 			</div>
 		</div>
 	</div>
