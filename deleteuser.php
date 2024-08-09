@@ -5,8 +5,9 @@ include('koneksi.php');
 $id = $_POST['id'];
 
 
+$query = "DELETE FROM users WHERE id_user = ".$id.""
+$delete = mysqli_query($db ,$query);
 
-$delete = mysqli_query($db , "DELETE FROM users WHERE id_user = ".$id."");
 if ($delete) {
 
 	$_SESSION['sukses'] = "Delete Succsessful.";

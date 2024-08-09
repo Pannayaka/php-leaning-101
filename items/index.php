@@ -8,6 +8,16 @@ if (!$_SESSION['login']){
 $selectUser = mysqli_query($db, "SELECT * FROM items");
 $title = "dashbaord";
 
+if (isset($_POST['delete_id'])) {
+    $deleteit = $_POST['delete_id'];
+    $deletepro = mysqli_query($db, "DELETE FROM items WHERE item_id = ".$deleteit."");
+    if ($deletepro) {
+        $_SESSION['sukses'] = "Delete Succsessful";
+        header('Location: index.php');
+        exit();
+    }
+}
+
 ?>
 
 
@@ -48,8 +58,8 @@ $title = "dashbaord";
                 <td><?php echo $value["item_insert_at"] ?></td>
                 <td> 
                   <a href="edit.php?id=<?php echo $value["item_id"] ?>">Edit</a>,
-                  <form action="delete.php" method="POST" onsubmit="return confirm('Are You Sure?')">
-                    <input type="hidden" name="item_id" value="<?php echo $value["item_id"];  ?>">
+                  <form action="index.php" method="POST" onsubmit="return confirm('Are You Sure?')">
+                    <input type="hidden" name="delete_id" value="<?php echo $value["item_id"];  ?>">
                     <button type="submit">Delete</button>
 
                   </form>
