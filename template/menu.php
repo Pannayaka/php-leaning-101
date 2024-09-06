@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="dashboard.php">Home</a>
+                  <a class="nav-link active" aria-current="page" href="http://localhost/php-leaning-101/dashboard.php">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">About</a>
